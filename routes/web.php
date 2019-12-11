@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('cards');
 });
+
+Route::resource('cards','CardsController');
