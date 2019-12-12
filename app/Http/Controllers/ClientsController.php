@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
-use Illuminate\Http\Request;
+use Request;
 
 class ClientsController extends Controller
 {
@@ -34,9 +34,10 @@ class ClientsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) 
     {
-        //
+        Client::create(Request::all());
+        return redirect('clients');
     }
 
     /**
