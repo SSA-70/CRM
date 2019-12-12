@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return redirect('cards');
+    return redirect('clients');
 });
 
-Route::resource('cards','CardsController');
+Route::resource('clients','ClientsController');
