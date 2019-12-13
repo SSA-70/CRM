@@ -68,7 +68,10 @@ body {
 }
 .alert
 {
-  margin-top: 1.5rem!important; 
+  margin-top: 0rem!important;
+  background-color:  #343a40;
+  border-color: #343a40;
+  color: #fff;
 }
     </style>
 }
@@ -83,7 +86,11 @@ body {
         <label for="password" class="sr-only">Password</label>
         <input type="password" id="password" name="password" class="form-control" placeholder="password" required autocomplete="current-password">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-
+        @if($errors->any())
+            <div class="alert alert-danger" role="alert">
+                Неверные логин или пароль
+            </div>
+        @endif
     </form>
 </body>
 </html>
