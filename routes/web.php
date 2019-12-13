@@ -10,11 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => 'auth'],function(){
+	Route::get('/', function () {
+    	return redirect('clients');
+	});
 
-Route::get('/', function () {
-    return redirect('clients');
+	Route::resource('clients','ClientsController');
 });
 
-Route::resource('clients','ClientsController');
-
-Auth::routes();
+Auth::routes();	

@@ -14,10 +14,19 @@
     <hr>
     <a href="clients/create">create new client</a>
     <hr>
-    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
-        Logout
-    </a>
-    <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
-        {{ csrf_field() }}
-    </form>
+    @if(!is_null($user))
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+            Logout {{ $user->name }}
+        </a>
+        <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
+    @endif
+    @if(is_null($user))
+        <a href="{{ route('login') }}">
+            login
+        </a>    
+    @endif
+
+
 @stop

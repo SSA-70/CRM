@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use Request;
+Use Auth;
 
 class ClientsController extends Controller
 {
@@ -15,7 +16,8 @@ class ClientsController extends Controller
     public function index()
     {
         $clients = Client::all();
-        return view('clients.index',compact('clients'));
+        $user = Auth::user();
+        return view('clients.index',compact('clients','user'));
     }
 
     /**
