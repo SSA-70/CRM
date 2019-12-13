@@ -56,7 +56,7 @@ body {
       box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.25);
     border-color: #343a40;
 }
-.form-signin input[type="email"] {
+.form-signin input[type="name"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
