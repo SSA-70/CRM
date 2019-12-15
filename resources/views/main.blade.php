@@ -8,33 +8,54 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <title>CRM</title>
+    <style>
+        .abtn {
+            color: #636b6f;
+            padding-left: 4px;
+        }
+        .abtn:hover {
+            color: #343a40;
+        }
+        .btn:hover {
+            background-color: #343a40;
+            color: #fff;
+            border-color: #fff;
+        }
+        .nickname {
+            color: #fff
+        }
+    </style>
 </head>
-<body class="text-center">
+<body class="bg-light">
 <nav class="navbar navbar-expand navbar-dark bg-dark">
-  <a class="navbar-brand" href="#"><img class="d-block pl-5 pr-5" src="/img/elke.png"></a>
+  <a class="navbar-brand" href="\"><img class="d-block pl-5 pr-5" src="/img/elke.png"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExample02">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+            <a class="nav-link" href="\">Главная</a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="\">Анкеты</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Заявки</a>
       </li>
     </ul>
     <form class= "form-logout" method="POST" action="{{ route('logout') }}">
         {{ csrf_field() }}
+            <span class="nickname">Привет, {{ $user->name }}</span>
         <button type="submit" class="btn btn-light btn-sm">
-        	<span class="fa fa-sign-out"></span> Выйти
+        	<span class="fas fa-sign-out-alt"></span> Выйти
         </button>
     </form>
   </div>
 </nav>
-    <div class="container">
+    <main role="main" class="container">
         @yield('content')
-    </div>
-</body>
+    </main>
+    </body>
 </html>

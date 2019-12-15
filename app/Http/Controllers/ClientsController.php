@@ -17,7 +17,7 @@ class ClientsController extends Controller
     {
         $clients = Client::all();
         $user = Auth::user();
-        return view('clients.index',compact('clients','user'));
+    return view('clients.index',compact('clients','user'));
     }
 
     /**
@@ -27,7 +27,9 @@ class ClientsController extends Controller
      */
     public function create()
     {
-        return view('clients.create');
+        $user = Auth::user();
+        $client = new Client();
+        return view('clients.form',compact('user','client'));
     }
 
     /**
@@ -36,7 +38,7 @@ class ClientsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) 
+    public function store(Request $request)
     {
         Client::create(Request::all());
         return redirect('clients');
@@ -51,7 +53,8 @@ class ClientsController extends Controller
     public function show($id)
     {
         $client = Client::findOrFail($id);
-        return view('clients.show',compact('client'));
+        $user = Auth::user();
+        return view('clients.show',compact('client','user'));
     }
 
     /**
@@ -62,7 +65,9 @@ class ClientsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = Client::findOrFail($id);
+        $user = Auth::user();
+        return view('clients.form',compact('client','user'));
     }
 
     /**

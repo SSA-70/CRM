@@ -34,11 +34,6 @@ body {
 .h3 {
     color: #fff
 }
-.btn {
-  background-color: #fff;
-  color: #343a40;
-  border-color: #fff;
-}
 .btn:hover {
   background-color: #343a40;
   color: #fff;
@@ -82,10 +77,10 @@ body {
         {{ HTML::image('img/elke.png', 'alt', array('class' => 'mb-4')) }}
         <h1 class="h3 mb-3 font-weight-normal">CRM</h1>
         <label for="name" class="sr-only">Login</label>
-        <input type="name" id="name" name="name" class="form-control" value="{{ old('name') }}" placeholder="Login" required autocomplete="name" autofocus>
+        <input type="name" id="name" name="name" class="form-control" value="{{ old('name') }}" placeholder="Имя пользователя" required autocomplete="name" autofocus>
         <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="password" required autocomplete="current-password">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Пароль" required autocomplete="current-password">
+        <button class="btn btn-lg btn-primary btn-block btn-light" type="submit">Войти</button>
         @if($errors->any())
             <div class="alert alert-danger" role="alert">
                 Неверные логин или пароль
