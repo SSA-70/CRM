@@ -32,7 +32,7 @@
                 <td>{{ $client->lastname }}</td>
                 <td>{{ $client->patronymic }}</td>
                 <td>
-                        <a href="{{ route('clients.show',$client->id) }}" class="abtn"><i class="fas fa-search"></i></a>
+                        <a href="{{ route('clients.show',$client->id) }}" class="abtn"><i class="far fa-id-card"></i></a>
                         <a href="{{ route('clients.edit',$client->id) }}" class="abtn"><i class="fas fa-edit"></i></a>
                         <a href="{{ route('clients.destroy',$client->id) }}" class="abtn"><i class="fas fa-trash-alt"></i></a>
                 </td>
