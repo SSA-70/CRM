@@ -32,12 +32,10 @@
                 <td>{{ $client->lastname }}</td>
                 <td>{{ $client->patronymic }}</td>
                 <td>
+                    {!! Form::open(array('url' => ['clients',$client->id],'method'=>'delete','id'=>'submitDelete')) !!}
                         <a href="{{ route('clients.show',$client->id) }}" class="abtn"><i class="far fa-id-card"></i></a>
                         <a href="{{ route('clients.edit',$client->id) }}" class="abtn"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="abtn" onclick="document.getElementById('submitDeleteButton').submit();"><i class="fas fa-trash-alt"></i></a>
-                    {!! Form::open(array('url' => ['clients',$client->id],'method'=>'delete')) !!}
-                        <button type="hidden" id="submitDeleteButton">
-
+                        <a href="#" class="abtn" onclick="document.getElementById('submitDelete').submit();"><i class="fas fa-trash-alt"></i></a>
                     {!! Form::close() !!}
                 </td>
             </tr>
