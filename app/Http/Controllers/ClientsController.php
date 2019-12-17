@@ -29,7 +29,7 @@ class ClientsController extends Controller
     {
         $user = Auth::user();
         $client = new Client();
-        return view('clients.form',compact('user','client'));
+        return view('clients.create',compact('user','client'));
     }
 
     /**
@@ -67,7 +67,7 @@ class ClientsController extends Controller
     {
         $client = Client::findOrFail($id);
         $user = Auth::user();
-        return view('clients.form',compact('client','user'));
+        return view('clients.edit',compact('client','user'));
     }
 
     /**
@@ -79,7 +79,11 @@ class ClientsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $client = Client::findOrFail($id);
+        $client->update(Request::all());
+        $user = Auth::user();
+        return view('clients.show',compact('client','user'));
+
     }
 
     /**
@@ -90,6 +94,6 @@ class ClientsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return 'Destroy';
     }
 }
