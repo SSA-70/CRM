@@ -57,6 +57,7 @@ class ClientsController extends Controller
     {
         $client = Client::findOrFail($id);
         $user = Auth::user();
+
         return view('clients.show',compact('client','user'));
     }
 

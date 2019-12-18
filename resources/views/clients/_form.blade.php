@@ -69,18 +69,19 @@
                 {!! Form::label('card_number','Номер карты') !!}
                 {!! Form::text('card_number',null,['class'=>'form-control']) !!}
             </div>
-        <div class="col-md-3">
-            {!! Form::label('user_id','Оператор') !!}
-            {!! Form::text('user_id',null,['class'=>'form-control', 'disabled'=>'disabled']) !!}
-        </div>
-        <div class="col-md-3">
-            {!! Form::label('azs_id','АЗС') !!}
-            {!! Form::text('azs_id',null,['class'=>'form-control', 'disabled'=>'disabled']) !!}
-        </div>
             <div class="col-md-3">
                 {!! Form::label('sold_at','Дата продажи') !!}
                 {!! Form::input('date','sold_at',null,['class'=>'form-control']) !!}
             </div>
+        <div class="col-md-3">
+            <template>{!! Form::label('user_id','Оператор') !!}</template>
+            {!! Form::hidden('user_id',null,['class'=>'form-control']) !!}
+        </div>
+        <div class="col-md-3">
+            <template>{!! Form::label('azs_id','АЗС') !!}</template>
+            {!! Form::hidden('azs_id',null,['class'=>'form-control']) !!}
+        </div>
+
         </div>
         <div class="row">
         <div class="col-md">
