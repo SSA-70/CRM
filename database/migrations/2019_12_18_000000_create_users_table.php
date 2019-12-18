@@ -22,9 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('lastname');
             $table->string('patronymic')->nullable($value = true);
             $table->date('birthday');
-            $table->integer('post_id')->unsigned();
-            $table->integer('place_id')->unsigned();
-            $table->integer('security_group_id')->unsigned();
+            $table->bigInteger('post_id')->unsigned();
+            $table->bigInteger('place_id')->unsigned();
+            $table->bigInteger('security_group_id')->unsigned();
             $table->boolean('is_admin')->default('0');
             $table->boolean('is_deleted')->default('0');
             $table->timestamps();

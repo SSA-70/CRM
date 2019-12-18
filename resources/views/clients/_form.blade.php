@@ -61,7 +61,7 @@
         </div>
         <div class="col-md-3">
             {!! Form::label('car_year','Год выпуска') !!}
-            {!! Form::input('date','car_year',null,['class'=>'form-control']) !!}
+            {!! Form::number('car_year','2016',['class'=>'form-control','min'=>'1900','step'=>'1']) !!}
         </div>
         </div>
         <div class="row mb-3">
@@ -71,11 +71,11 @@
             </div>
         <div class="col-md-3">
             {!! Form::label('user_id','Оператор') !!}
-            {!! Form::text('user_id',null,['class'=>'form-control']) !!}
+            {!! Form::text('user_id',null,['class'=>'form-control', 'disabled'=>'disabled']) !!}
         </div>
         <div class="col-md-3">
             {!! Form::label('azs_id','АЗС') !!}
-            {!! Form::text('azs_id',null,['class'=>'form-control']) !!}
+            {!! Form::text('azs_id',null,['class'=>'form-control', 'disabled'=>'disabled']) !!}
         </div>
             <div class="col-md-3">
                 {!! Form::label('sold_at','Дата продажи') !!}

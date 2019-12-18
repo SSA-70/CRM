@@ -15,8 +15,9 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
         $user = Auth::user();
+        //if(!user)
+        $clients = Client::where('user_id','=',$user->id)->get();
     return view('clients.index',compact('clients','user'));
     }
 
@@ -29,6 +30,8 @@ class ClientsController extends Controller
     {
         $user = Auth::user();
         $client = new Client();
+        $client->user_id = $user->id;
+        $client->azs_id = $user->place_id;
         return view('clients.create',compact('user','client'));
     }
 

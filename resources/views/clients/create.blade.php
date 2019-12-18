@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-        {!! Form::open(['url' => 'clients']) !!}
+        {!!  Form::model($client,['url' => 'clients']) !!}
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center border-bottom mb-3">
             <h1 class="h2">Создать новую анкету</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        
+        @include('clients._form')
         {!! Form::close() !!}
         </div>
     </div>

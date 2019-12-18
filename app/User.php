@@ -38,6 +38,6 @@ class User extends Authenticatable
     ];
 
     public function place(){
-        return $this->belongsTo('App/Places');
+        return $this->belongsTo('App\Places');
     }
 }

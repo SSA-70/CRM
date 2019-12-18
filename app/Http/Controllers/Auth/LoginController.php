@@ -42,6 +42,7 @@ class LoginController extends Controller
     {
         $input = $request->all();
         if (Auth::attempt(['name' => $input['name'], 'password' => $input['password'], 'is_deleted' => 0])) {
+
             // Аутентификация успешна...
             return redirect()->intended('clients');
         }

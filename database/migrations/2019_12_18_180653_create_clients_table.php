@@ -28,9 +28,9 @@ class CreateClientsTable extends Migration
             $table->boolean('is_send_sms')->default('0');
             $table->string('car_mark_id')->nullable($value = true);
             $table->string('car_model_id')->nullable($value = true);
-            $table->date('car_year')->nullable($value = true);
-            $table->string('user_id')->unsigned();
-            $table->string('azs_id')->unsigned();
+            $table->integer('car_year')->nullable($value = true);
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('azs_id')->unsigned();
             $table->string('comment')->nullable($value = true);
             $table->boolean('is_deleted')->default('0');
             $table->timestamp('sold_at')->nullable($value = true);
