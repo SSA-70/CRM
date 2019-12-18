@@ -35,10 +35,12 @@ class CreateClientsTable extends Migration
             $table->boolean('is_deleted')->default('0');
             $table->timestamp('sold_at')->nullable($value = true);
             $table->timestamp('checked_at')->nullable($value = true);
+            $table->bigInteger('owner_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('azs_id')->references('id')->on('places');
+            $table->foreign('owner_id')->references('id')->on('users');
         });
     }
 

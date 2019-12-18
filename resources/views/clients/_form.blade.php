@@ -63,6 +63,10 @@
             {!! Form::label('car_year','Год выпуска') !!}
             {!! Form::number('car_year','2016',['class'=>'form-control','min'=>'1900','step'=>'1']) !!}
         </div>
+            <div class="col-md-3">
+                <template>{!! Form::label('owner_id','Владелец') !!}</template>
+                {!! Form::hidden('owner_id',null,['class'=>'form-control']) !!}
+            </div>
         </div>
         <div class="row mb-3">
             <div class="col-md-3">
