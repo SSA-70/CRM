@@ -29,13 +29,16 @@ class CreateClientsTable extends Migration
             $table->string('car_mark_id')->nullable($value = true);
             $table->string('car_model_id')->nullable($value = true);
             $table->date('car_year')->nullable($value = true);
-            $table->string('user_id')->default('0');
-            $table->string('azs_id')->default('0');
+            $table->string('user_id')->unsigned();
+            $table->string('azs_id')->unsigned();
             $table->string('comment')->nullable($value = true);
             $table->boolean('is_deleted')->default('0');
             $table->timestamp('sold_at')->nullable($value = true);
             $table->timestamp('checked_at')->nullable($value = true);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('azs_id')->references('id')->on('places');
         });
     }
 

@@ -83,7 +83,7 @@ body {
         <button class="btn btn-lg btn-primary btn-block btn-light" type="submit">Войти</button>
         @if($errors->any())
             <div class="alert alert-danger" role="alert">
-                Неверные логин или пароль
+                {{ $errors->first() }}
             </div>
         @endif
     </form>

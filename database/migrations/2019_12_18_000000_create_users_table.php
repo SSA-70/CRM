@@ -16,18 +16,22 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
-            $table->string('email');
+            $table->string('email')->nullable($value = true);
             $table->string('password');
             $table->string('firstname');
             $table->string('lastname');
             $table->string('patronymic')->nullable($value = true);
             $table->date('birthday');
-            $table->integer('post_id');
-            $table->integer('place_id');
-            $table->integer('security_group_id');
+            $table->integer('post_id')->unsigned();
+            $table->integer('place_id')->unsigned();
+            $table->integer('security_group_id')->unsigned();
             $table->boolean('is_admin')->default('0');
             $table->boolean('is_deleted')->default('0');
             $table->timestamps();
+
+            //$table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('place_id')->references('id')->on('places');
+            $table->foreign('security_group_id')->references('id')->on('security_groups');
         });
     }
 

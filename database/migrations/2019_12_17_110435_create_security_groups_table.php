@@ -14,7 +14,7 @@ class CreateSecurityGroupsTable extends Migration
     public function up()
     {
         Schema::create('security_groups', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->string('name');
             $table->string('description');
             $table->boolean('_worksheets_read')->default('0');
