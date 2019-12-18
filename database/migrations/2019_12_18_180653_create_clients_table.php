@@ -33,7 +33,7 @@ class CreateClientsTable extends Migration
             $table->bigInteger('azs_id')->unsigned();
             $table->string('comment')->nullable($value = true);
             $table->boolean('is_deleted')->default('0');
-            $table->timestamp('sold_at')->nullable($value = true);
+            $table->date('sold_at')->nullable($value = true);
             $table->timestamp('checked_at')->nullable($value = true);
             $table->bigInteger('owner_id')->unsigned();
             $table->timestamps();
