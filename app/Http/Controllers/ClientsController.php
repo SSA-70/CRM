@@ -16,8 +16,13 @@ class ClientsController extends Controller
     public function index()
     {
         $user = Auth::user();
-        //if(!user)
-        $clients = Client::where('user_id','=',$user->id)->get();
+        if($user->is_admin){
+            $clients = Client::all();
+        }
+        else{
+            $clients = Client::where('user_id','=',$user->id)->get();
+        }
+
     return view('clients.index',compact('clients','user'));
     }
 
