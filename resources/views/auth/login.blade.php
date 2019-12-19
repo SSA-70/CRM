@@ -88,10 +88,12 @@
     <label for="name" class="sr-only">Login</label>
     <input type="name" name="name" style="display:none">
     <input type="name" id="name" name="name" class="form-control" value="{{ old('name') }}"
-           placeholder="Имя пользователя" required autofocus>
+           placeholder="Имя пользователя" required autofocus autocomplete="off" readonly
+           onfocus="this.removeAttribute('readonly')">
     <label for="password" class="sr-only">Password</label>
     <input type="password" name="password" style="display:none">
-    <input type="password" id="password" name="password" class="form-control" placeholder="Пароль" required>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Пароль" required
+           autocomplete="off" readonly onfocus="this.removeAttribute('readonly')">
     <button class="btn btn-lg btn-primary btn-block btn-light" type="submit">Войти</button>
     @if($errors->any())
         <div class="alert alert-danger" role="alert">
