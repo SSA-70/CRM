@@ -61,7 +61,7 @@
         </div>
         <div class="col-md-3">
             {!! Form::label('car_year','Год выпуска') !!}
-            {!! Form::number('car_year','2016',['class'=>'form-control','min'=>'1900','step'=>'1']) !!}
+            {!! Form::number('car_year',null,['class'=>'form-control','min'=>'1900','step'=>'1']) !!}
         </div>
             <div class="col-md-3">
                 <template>{!! Form::label('owner_id','Владелец') !!}</template>

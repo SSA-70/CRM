@@ -15,6 +15,10 @@
  * Group of routes for AUTH USERS ONLY
  */
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('logout',function () {
+        return redirect('clients');
+    });
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
     Route::resource('clients', 'ClientsController');
 
@@ -32,4 +36,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login', 'Auth\LoginController@authenticate')->name('login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
