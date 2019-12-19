@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Client;
-use Request;
-Use Auth;
+use Illuminate\Http\Request;
+use App\User;
+use Auth;
+use Hash;
 
-class ClientsController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +16,10 @@ class ClientsController extends Controller
      */
     public function index()
     {
+        $users = User::all()->where('is_deleted', '=', '0')->sortBy('place_id');
         $user = Auth::user();
-        if ($user->is_admin) {
-            $clients = Client::all();
-        } else {
-            $clients = Client::where('user_id', '=', $user->id)->get();
-        }
 
-        return view('clients.index', compact('clients', 'user'));
+        return view('users.index', compact('users', 'user'));
     }
 
     /**
@@ -33,12 +30,9 @@ class ClientsController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $client = new Client();
+        $users = new User();
 
-        $client->user_id = $user->id;
-        $client->owner_id = $user->id;
-        $client->azs_id = $user->place_id;
-        return view('clients.create', compact('user', 'client'));
+        return view('users.create', compact('users', 'user'));
     }
 
     /**
@@ -49,8 +43,10 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        Client::create(Request::all());
-        return redirect('clients');
+        $data = $request->except('pass');
+        $data['password'] = Hash::make($request->pass);
+        User::create($data);
+        return redirect('users');
     }
 
     /**
@@ -61,10 +57,10 @@ class ClientsController extends Controller
      */
     public function show($id)
     {
-        $client = Client::findOrFail($id);
+        $users = User::findOrFail($id);
         $user = Auth::user();
 
-        return view('clients.show', compact('client', 'user'));
+        return view('users.show', compact('users', 'user'));
     }
 
     /**
@@ -75,9 +71,10 @@ class ClientsController extends Controller
      */
     public function edit($id)
     {
-        $client = Client::findOrFail($id);
+        $users = User::findOrFail($id);
         $user = Auth::user();
-        return view('clients.edit', compact('client', 'user'));
+
+        return view('users.edit', compact('users', 'user'));
     }
 
     /**
@@ -89,11 +86,15 @@ class ClientsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client = Client::findOrFail($id);
-        $client->update(Request::all());
-        $user = Auth::user();
-        return view('clients.show', compact('client', 'user'));
 
+        $users = User::findOrFail($id);
+        $data = $request->except('pass');
+        if ($request->pass != '') {
+            $data['password'] = Hash::make($request->pass);
+        }
+        $users->update($data);
+        $user = Auth::user();
+        return view('users.show', compact('users', 'user'));
     }
 
     /**
@@ -104,10 +105,10 @@ class ClientsController extends Controller
      */
     public function destroy($id)
     {
-        $client = Client::findOrFail($id);
-        $client->delete();
-        //   $client->is_deleted = true;
-        //   $client->save();
-        return redirect('clients');
+        //return $id;
+        $users = User::findOrFail($id);
+        $users->is_deleted = true;
+        $users->save();
+        return redirect('users');
     }
 }

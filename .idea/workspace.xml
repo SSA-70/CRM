@@ -120,7 +120,13 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\crm\resources\views" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -153,7 +159,7 @@
       <workItem from="1576076534999" duration="23538000" />
       <workItem from="1576344642018" duration="43268000" />
       <workItem from="1576641233540" duration="77000" />
-      <workItem from="1576641350998" duration="12983000" />
+      <workItem from="1576641350998" duration="26586000" />
     </task>
     <servers />
   </component>

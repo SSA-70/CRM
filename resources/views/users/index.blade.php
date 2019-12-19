@@ -3,9 +3,9 @@
 @section('content')
     <div class="my-3 p-3 bg-white rounded shadow-sm">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
-            <h1 class="h2">Анкеты</h1>
+            <h1 class="h2">Пользователи</h1>
             <div class="btn-toolbar">
-                <a href="{{ route('clients.create') }}">
+                <a href="{{ route('users.create') }}">
                     <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fas fa-user-plus"></i>
                         Создать
                     </button>
@@ -15,8 +15,8 @@
         <table class="table table-striped table-sm">
             <thead>
             <tr>
-                <th>Дата создания</th>
-                <th>Номер карты</th>
+                <th>АЗС</th>
+                <th>Логин</th>
                 <th>Фамилия</th>
                 <th>Имя</th>
                 <th>Отчество</th>
@@ -26,20 +26,19 @@
             <tbody>
 
 
-            @foreach($clients as $client)
+            @foreach($users as $usr)
                 <tr>
-                    <td>{{ $client->created_at }}</td>
-                    <td>{{ $client->card_number }}</td>
-                    <td>{{ $client->firstname }}</td>
-                    <td>{{ $client->lastname }}</td>
-                    <td>{{ $client->patronymic }}</td>
+                    <td>{{ $usr->place_id }}</td>
+                    <td>{{ $usr->name }}</td>
+                    <td>{{ $usr->firstname }}</td>
+                    <td>{{ $usr->lastname }}</td>
+                    <td>{{ $usr->patronymic }}</td>
                     <td>
-                        {!! Form::open(array('url' => ['clients',$client->id],'method'=>'delete','id'=>'submitDelete'.$client->id)) !!}
-                        <a href="{{ route('clients.show',$client->id) }}" class="abtn"><i
-                                class="far fa-id-card"></i></a>
-                        <a href="{{ route('clients.edit',$client->id) }}" class="abtn"><i class="fas fa-edit"></i></a>
+                        {!! Form::open(array('url' => ['users',$usr->id],'method'=>'delete','id'=>'submitDelete'.$usr->id)) !!}
+                        <a href="{{ route('users.show',$usr->id) }}" class="abtn"><i class="far fa-id-card"></i></a>
+                        <a href="{{ route('users.edit',$usr->id) }}" class="abtn"><i class="fas fa-edit"></i></a>
                         <a href="#" class="abtn"
-                           onclick="document.getElementById('submitDelete{{$client->id}}').submit();"><i
+                           onclick="document.getElementById('submitDelete{{$usr->id}}').submit();"><i
                                 class="fas fa-trash-alt"></i></a>
                         {!! Form::close() !!}
                     </td>
