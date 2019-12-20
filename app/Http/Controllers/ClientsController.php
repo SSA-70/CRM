@@ -22,7 +22,7 @@ class ClientsController extends Controller
             $clients = Client::where('user_id', '=', $user->id)->get();
         }
 
-        return view('clients.index', compact('clients', 'user','ip'));
+        return view('clients.index', compact('clients', 'user'));
     }
 
     /**
