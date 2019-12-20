@@ -15,19 +15,6 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        if (!empty($_SERVER['HTTP_CLIENT_IP']))
-        {
-            $ip=$_SERVER['HTTP_CLIENT_IP'];
-        }
-        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
-        {
-            $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
-        }
-        else
-        {
-            $ip=$_SERVER['REMOTE_ADDR'];
-        }
-
         $user = Auth::user();
         if ($user->is_admin) {
             $clients = Client::all();
