@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
-use Request;
+use App\Http\Requests\ClientsRequest;
 Use Auth;
 
 class ClientsController extends Controller
@@ -47,9 +47,9 @@ class ClientsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClientsRequest $request)
     {
-        Client::create(Request::all());
+        Client::create($request->all());
         return redirect('clients');
     }
 
@@ -87,10 +87,10 @@ class ClientsController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ClientsRequest $request, $id)
     {
         $client = Client::findOrFail($id);
-        $client->update(Request::all());
+        $client->update($request->all());
         $user = Auth::user();
         return view('clients.show', compact('client', 'user'));
 
