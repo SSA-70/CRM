@@ -15,6 +15,19 @@ class ClientsController extends Controller
      */
     public function index()
     {
+        if (!empty($_SERVER['HTTP_CLIENT_IP']))
+        {
+            $ip=$_SERVER['HTTP_CLIENT_IP'];
+        }
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+        {
+            $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
+        else
+        {
+            $ip=$_SERVER['REMOTE_ADDR'];
+        }
+
         $user = Auth::user();
         if ($user->is_admin) {
             $clients = Client::all();
@@ -22,7 +35,7 @@ class ClientsController extends Controller
             $clients = Client::where('user_id', '=', $user->id)->get();
         }
 
-        return view('clients.index', compact('clients', 'user'));
+        return view('clients.index', compact('clients', 'user','ip'));
     }
 
     /**

@@ -74,6 +74,7 @@
     </div>
 </nav>
 <main role="main" class="container">
+    <template>{{ $ip }}</template>
     @yield('content')
 </main>
 </body>
