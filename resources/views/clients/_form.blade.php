@@ -32,7 +32,7 @@
             <div class="col-md-3">
 
                 {!! Form::label('is_send_sms','СМС рассылка') !!}
-                <select class="custom-select" id="is_send_sms">
+                <select name="is_send_sms" class="custom-select" id="is_send_sms">
                     <option @if($client->is_send_sms){{'selected'}}@endif value="1">Согласен</option>
                     <option @if(!$client->is_send_sms){{'selected'}}@endif value="0">Не согласен</option>
                 </select>
