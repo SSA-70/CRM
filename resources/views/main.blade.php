@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <title>CRM</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url('js/jquery.inputmask.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#mobile_number").inputmask("+7(999)999-99-99")
+            $("#mobile_number_addition").inputmask("+7(999)999-99-99")
+        });
+    </script>
     <style>
         .abtn {
             color: #636b6f;
