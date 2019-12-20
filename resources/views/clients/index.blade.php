@@ -35,11 +35,11 @@
                     <td>{{ $client->patronymic }}</td>
                     <td>
                         {!! Form::open(array('url' => ['clients',$client->id],'method'=>'delete','id'=>'submitDelete'.$client->id)) !!}
-                        <a href="{{ route('clients.show',$client->id) }}" class="abtn"><i
+                        <a href="{{ route('clients.show',$client->id) }}" class="abtn" title="Просмотр"><i
                                 class="far fa-id-card"></i></a>
-                        <a href="{{ route('clients.edit',$client->id) }}" class="abtn"><i class="fas fa-edit"></i></a>
+                        <a href="{{ route('clients.edit',$client->id) }}" class="abtn" title="Редактировать"><i class="fas fa-edit"></i></a>
                         <a href="#" class="abtn"
-                           onclick="document.getElementById('submitDelete{{$client->id}}').submit();"><i
+                           onclick="document.getElementById('submitDelete{{$client->id}}').submit();" title="Удалить"><i
                                 class="fas fa-trash-alt"></i></a>
                         {!! Form::close() !!}
                     </td>
