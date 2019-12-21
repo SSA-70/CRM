@@ -28,8 +28,8 @@ class ClientsRequest extends FormRequest
             'firstname' => 'required',
             'lastname' => 'required',
             'birthday' => 'required|date',
-            'mobile_number' => 'required|size:16',
-            'card_number' => 'required|digits_between:5,6|unique:clients',
+            'mobile_number' => 'required|regex:/^(\+7)(\()([0-9]{3})(\))([0-9]{3})(\-)([0-9]{2})(\-)([0-9]{2})$/i',
+            'card_number' => 'required|digits_between:5,6',
             'sold_at' => 'required|date'
         ];
     }
@@ -42,10 +42,9 @@ class ClientsRequest extends FormRequest
             'birthday.required' => 'введите дату рождения',
             'birthday.date' => 'неверный формат даты рождения ( должно быть ДД-ММ-ГГГГ )',
             'mobile_number.required' => 'введите сотовый',
-            'mobile_number.size' => 'неверный формат номера сотового ( должно быть +7(ХХХ)ХХХ-ХХ-ХХ )',
+            'mobile_number.regex' => 'неверный формат номера сотового ( должно быть +7(ХХХ)ХХХ-ХХ-ХХ )',
             'card_number.required' => 'введите номер карты',
             'card_number.digits_between' => 'неверная длинна номера карты',
-            'card_number.unique' => 'такой номер карты уже существует в базе анкет',
             'sold_at.required' => 'введите дату продажи',
             'sold_at.date' => 'неверный формат даты продажи ( должно быть ДД.ММ.ГГГГ )'
         ];
