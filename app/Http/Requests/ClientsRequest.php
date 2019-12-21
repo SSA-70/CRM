@@ -29,7 +29,7 @@ class ClientsRequest extends FormRequest
             'lastname' => 'required',
             'birthday' => 'required|date',
             'mobile_number' => 'required|size:16',
-            'card_number' => 'required|digits_between:6,7|unique:clients',
+            'card_number' => 'required|digits_between:5,6|unique:clients',
             'sold_at' => 'required|date'
         ];
     }
