@@ -49,6 +49,7 @@ class ClientsController extends Controller
      */
     public function store(ClientsRequest $request)
     {
+        $this->validate($request,['card_number'=>'unique:clients'],['card_number.unique'=>'такой номер карты уже существует в базе']);
         Client::create($request->all());
         return redirect('clients');
     }
@@ -90,6 +91,9 @@ class ClientsController extends Controller
     public function update(ClientsRequest $request, $id)
     {
         $client = Client::findOrFail($id);
+        if($client->card_number != $request->card_number){
+            $this->validate($request,['card_number'=>'unique:clients'],['card_number.unique'=>'такой номер карты уже существует в базе']);
+        }
         $client->update($request->all());
         $user = Auth::user();
         return view('clients.show', compact('client', 'user'));
