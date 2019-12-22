@@ -17,9 +17,9 @@ class ClientsController extends Controller
     {
         $user = Auth::user();
         if ($user->is_admin) {
-            $clients = Client::all();
+            $clients = Client::whereNull('checked_at')->get();
         } else {
-            $clients = Client::where('user_id', '=', $user->id)->get();
+            $clients = Client::whereNull('checked_at')->where('user_id', '=', $user->id)->get();
         }
 
         return view('clients.index', compact('clients', 'user'));
