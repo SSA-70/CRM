@@ -19,8 +19,10 @@ Route::group(['middleware' => 'auth'], function () {
         return redirect('clients');
     });
     Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
+    Route::resource('dashboard', 'DashboardController');
     Route::resource('clients', 'ClientsController');
+    Route::get('clients_db/search', 'ClientsDBController@search')->name('clients_db.search');
+    Route::resource('clients_db', 'ClientsDBController');
 
     /*
      * Group of routes for IS_ADMIN ONLY
@@ -30,7 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::get('/', function () {
-        return redirect('clients');
+        return redirect('dashboard');
     });
 });
 

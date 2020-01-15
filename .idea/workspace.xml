@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94395255-b306-46c3-9ce2-d56057954b15" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -123,11 +124,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\laragon\www\crm\resources\views" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\laragon\www\crm\public" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\crm\resources\views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -162,6 +163,7 @@
       <workItem from="1576344642018" duration="43268000" />
       <workItem from="1576641233540" duration="77000" />
       <workItem from="1576641350998" duration="33307000" />
+      <workItem from="1578907612478" duration="28428000" />
     </task>
     <servers />
   </component>
