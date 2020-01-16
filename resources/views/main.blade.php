@@ -79,7 +79,7 @@
         </ul>
         <form class="form-logout" method="POST" action="{{ route('logout') }}">
             {{ csrf_field() }}
-            <span class="nickname">Привет, {{ $user->name }}</span>
+            <span class="nickname">Привет, {{ $user->firstname.' '.$user->lastname }}</span>
             <button type="submit" class="btn btn-light btn-sm">
                 <span class="fas fa-sign-out-alt"></span> Выйти
             </button>

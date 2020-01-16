@@ -143,7 +143,7 @@ class ClientsDBController extends Controller
         }
         $client->update($request->all());
         $user = Auth::user();
-        return view('clients_db.show', compact('client', 'user'));
+        return redirect()->route('clients_db.show',$id);
     }
 
     /**
