@@ -87,19 +87,19 @@
             @endif
             @if($user->security_group_id == 2 or $user->is_admin)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('clients_db.index')}}"><b>База</b></a>
+                    <a class="nav-link" href="{{route('clients_db.index')}}">База</a>
                 </li>
             @endif
             @if($user->is_admin)
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('users.index')}}"><b>USERS</b></a>
+                    <a class="nav-link" href="{{route('users.index')}}">Пользователи</a>
                 </li>
             @endif
         </ul>
         <form class="form-logout" method="POST" action="{{ route('logout') }}">
             {{ csrf_field() }}
-            <span class="nickname">Привет, {{ $user->firstname.' '.$user->lastname }}</span>
+            <span class="nickname">Привет, {{ $user->lastname.' '.$user->patronymic }}</span>
             <button type="submit" class="btn btn-light btn-sm">
                 <span class="fas fa-sign-out-alt"></span> Выйти
             </button>
