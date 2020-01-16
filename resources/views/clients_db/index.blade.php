@@ -7,9 +7,9 @@
 <div style="position: relative">
         <div style="position: absolute; right:0px">
             <div class="btn-toolbar">
-                <form method="GET" action="{{ route('clients_db.search') }}" class="form-inline">
+                <form method="GET" action="{{ route('clients_db.index') }}" class="form-inline">
                     <div class="input-group input-group-sm">
-                        <input type="text" class="form-control" placeholder="Найти" aria-label="Найти" aria-describedby="button-addon2" name="search">
+                        <input type="text" class="form-control" placeholder="Найти" value="{{$searchtext}}" aria-label="Найти" aria-describedby="button-addon2" name="search" onkeyup="this.value=this.value.replace(' ','')">
                         <div class="input-group-append">
                             <button class="btn btn-sm btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"></i></button>
                         </div>
@@ -71,8 +71,8 @@
                             <td>{{ $client->card_number }}</td>
                             <td>{{ $client->firstname.' '.$client->lastname.' '.$client->patronymic }}</td>
                             <td>{{ $client->mobile_number }}</td>
-                            <td>{{ $client->azs_id }}</td>
-                            <td>{{ $client->user_id }}</td>
+                            <td>{{ $client->azs->name }}</td>
+                            <td>{{ $client->user->firstname.' '.$client->user->lastname }}</td>
                             <td>{{ $client->sold_at }}</td>
                         <!--<td>{{ $client->comment }}</td>-->
                             <td>
@@ -119,8 +119,8 @@
                             <td>{{ $client->card_number }}</td>
                             <td>{{ $client->firstname.' '.$client->lastname.' '.$client->patronymic }}</td>
                             <td>{{ $client->mobile_number }}</td>
-                            <td>{{ $client->azs_id }}</td>
-                            <td>{{ $client->user_id }}</td>
+                            <td>{{ $client->azs->name }}</td>
+                            <td>{{ $client->user->firstname.' '.$client->user->lastname }}</td>
                             <td>{{ $client->sold_at }}</td>
                         <!--<td>{{ $client->comment }}</td>-->
                             <td>
@@ -164,8 +164,8 @@
                             <td>{{ $client->card_number }}</td>
                             <td>{{ $client->firstname.' '.$client->lastname.' '.$client->patronymic }}</td>
                             <td>{{ $client->mobile_number }}</td>
-                            <td>{{ $client->azs_id }}</td>
-                            <td>{{ $client->user_id }}</td>
+                            <td>{{ $client->azs->name }}</td>
+                            <td>{{ $client->user->firstname.' '.$client->user->lastname }}</td>
                             <td>{{ $client->sold_at }}</td>
                         <!--<td>{{ $client->comment }}</td>-->
                             <td>

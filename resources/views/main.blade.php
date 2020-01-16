@@ -21,6 +21,7 @@
             $("#mobile_number_addition").inputmask("+7(999)999-99-99")
         });
     </script>
+
     <style>
         .nav-tabs .nav-link {
             color: #343a40;

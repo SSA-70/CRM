@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','firstname','lastname','patronymic','birthday','post_id','place_id','security_group_id'
+        'name', 'email', 'password', 'firstname', 'lastname', 'patronymic', 'birthday', 'post_id', 'place_id', 'security_group_id'
     ];
 
     /**
@@ -37,7 +37,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function place(){
+    public function place()
+    {
         return $this->belongsTo('App\Places');
     }
+
 }

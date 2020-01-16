@@ -21,7 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('logout', 'Auth\LoginController@logout')->name('logout');
     Route::resource('dashboard', 'DashboardController');
     Route::resource('clients', 'ClientsController');
-    Route::get('clients_db/search', 'ClientsDBController@search')->name('clients_db.search');
+
     Route::resource('clients_db', 'ClientsDBController');
 
     /*

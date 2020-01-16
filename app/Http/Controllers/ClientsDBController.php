@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Places;
+use App\User;
 use App\Http\Requests\ClientsRequest;
 Use Auth;
 Use Carbon\Carbon;
@@ -20,14 +22,42 @@ class ClientsDBController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = Auth::user();
-        $clients_db = Client::where('is_deleted', 0)->whereNotNull('checked_at')->orderby('card_number', 'desc')->limit(1000)->get();
-        $clients_ws = Client::whereNull('checked_at')->orderby('card_number', 'desc')->get();
-        $clients_del = Client::where('is_deleted', 1)->orderby('updated_at', 'desc')->get();
+        $operatorSql ='';
+        $operator = User::where('firstname',$request->input('search'))->pluck('id');
+        if(!empty($operator)){
+            foreach ($operator as $op) {
+                $operatorSql = $operatorSql . ' or `user_id` LIKE \'%' . $op.'%\'';
+            }
+        }
+        $azsSql ='';
+        $azs = Places::where('name',$request->input('search'))->pluck('id');
+        if(!empty($azs)){
+            foreach ($azs as $az){
+                $azsSql=$azsSql.' or `azs_id` LIKE \'%'.$az.'%\'';
+            }
+        }
 
-        return view('clients_db.index', compact('clients_db', 'clients_ws', 'clients_del', 'user'));
+        $searchsql = '(
+                `card_number` LIKE \'%'.$request->input('search').'%\' or
+                `firstname` LIKE \'%'.$request->input('search').'%\' or
+                `lastname` LIKE \'%'.$request->input('search').'%\' or
+                `patronymic` LIKE \'%'.$request->input('search').'%\' or
+                `mobile_number` LIKE \'%'.$request->input('search').'%\' or
+                `mobile_number_addition` LIKE \'%'.$request->input('search').'%\' or
+                `phone_number` LIKE \'%'.$request->input('search').'%\''.
+            $operatorSql.''.$azsSql.')';
+
+        $user = Auth::user();
+        $clients_db = Client::whereRaw('is_deleted = 0 and checked_at IS NOT NULL and '.$searchsql)
+            ->orderby('card_number', 'desc')->limit(1000)->get();
+        $clients_ws = Client::whereRaw('is_deleted = 0 and checked_at IS NULL and '.$searchsql)
+            ->orderby('card_number', 'desc')->get();
+        $clients_del = Client::whereRaw('is_deleted = 1 and '.$searchsql)
+            ->orderby('updated_at', 'desc')->get();
+        $searchtext=$request->input('search');
+        return view('clients_db.index', compact('clients_db', 'clients_ws', 'clients_del', 'user','searchtext'));
     }
 
     /**
@@ -38,12 +68,14 @@ class ClientsDBController extends Controller
     public function create()
     {
         $user = Auth::user();
+        $operators = User::get();
+        $azs = Places::get();
         $client = new Client();
 
         $client->user_id = $user->id;
         $client->owner_id = $user->id;
         $client->azs_id = $user->place_id;
-        return view('clients_db.create', compact('user', 'client'));
+        return view('clients_db.create', compact('user', 'client', 'operators','azs'));
     }
 
     /**
@@ -60,30 +92,7 @@ class ClientsDBController extends Controller
         return redirect('clients_db');
     }
 
-    public function search(Request $request)
-    {
-
-        $user = Auth::user();
-        $clients_db = Client::where('card_number', $request->input('search'))
-                ->orWhere('firstname', $request->input('search'))
-                ->orWhere('lastname', $request->input('search'))
-                ->orWhere('patronymic', $request->input('search'))
-                /**->orWhere('birthday', $request->input('search'))**/
-                ->orWhere('mobile_number', $request->input('search'))
-                ->orWhere('mobile_number_addition', $request->input('search'))
-                ->orWhere('phone_number', $request->input('search'))
-                ->orWhere('email', $request->input('search'))
-                ->orWhere('address', $request->input('search'))
-                ->orWhere('comment', $request->input('search'))
-                /**->orWhere('sold_at', $request->input('search'))**/
-                ->where('is_deleted', 0)->whereNotNull('checked_at')->orderby('card_number', 'desc')->limit(1000)->get();
-        $clients_ws = Client::whereNull('checked_at')->orderby('card_number', 'desc')->get();
-        $clients_del = Client::where('is_deleted', 1)->orderby('updated_at', 'desc')->get();
-        return view('clients_db.index', compact('clients_db', 'clients_ws', 'clients_del', 'user'));
-
-    }
-
-    /**
+     /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -93,8 +102,10 @@ class ClientsDBController extends Controller
     {
         $client = Client::findOrFail($id);
         $user = Auth::user();
+        $azs = Places::get();
+        $operators = User::get();
 
-        return view('clients_db.show', compact('client', 'user'));
+        return view('clients_db.show', compact('client', 'user','operators','azs'));
     }
 
     /**
@@ -107,7 +118,9 @@ class ClientsDBController extends Controller
     {
         $client = Client::findOrFail($id);
         $user = Auth::user();
-        return view('clients_db.edit', compact('client', 'user'));
+        $azs = Places::get();
+        $operators = User::get();
+        return view('clients_db.edit', compact('client', 'user','operators','azs'));
     }
 
     /**

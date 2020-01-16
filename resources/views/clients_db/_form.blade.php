@@ -90,11 +90,19 @@
     </div>
     <div class="col-md-3">
         {!! Form::label('user_id','Оператор') !!}
-        {!! Form::text('user_id',null,['class'=>'form-control']) !!}
+        <select name="user_id" class="custom-select" id="user_id">
+            @foreach($operators as $operator)
+                <option @if($operator->id == $client->user_id){{'selected'}}@endif value="{{$operator->id}}">{{$operator->firstname.' '.$operator->lastname}}</option>
+            @endforeach
+        </select>
     </div>
     <div class="col-md-3">
         {!! Form::label('azs_id','АЗС') !!}
-        {!! Form::text('azs_id',null,['class'=>'form-control']) !!}
+        <select name="azs_id" class="custom-select" id="azs_id">
+            @foreach($azs as $az)
+                <option @if($az->id == $client->azs_id){{'selected'}}@endif value="{{$az->id}}">{{$az->name}}</option>
+            @endforeach
+        </select>
     </div>
 
 </div>

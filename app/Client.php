@@ -28,4 +28,14 @@ class Client extends Model
         'sold_at',
         'checked_at'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }
+
+    public function azs()
+    {
+        return $this->belongsTo('App\Places', 'azs_id', 'id');
+    }
 }
