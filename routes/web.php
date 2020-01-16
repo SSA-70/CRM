@@ -21,9 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('logout', 'Auth\LoginController@logout')->name('logout');
     Route::resource('dashboard', 'DashboardController');
     Route::resource('clients', 'ClientsController');
-
     Route::resource('clients_db', 'ClientsDBController');
-
     /*
      * Group of routes for IS_ADMIN ONLY
      */

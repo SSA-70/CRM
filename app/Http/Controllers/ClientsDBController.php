@@ -24,6 +24,8 @@ class ClientsDBController extends Controller
      */
     public function index(Request $request)
     {
+
+
         $operatorSql ='';
         $operator = User::where('firstname','LIKE','%'.$request->input('search').'%')->pluck('id');
         if(!empty($operator)){
@@ -50,14 +52,21 @@ class ClientsDBController extends Controller
             $operatorSql.''.$azsSql.')';
 
         $user = Auth::user();
-        $clients_db = Client::whereRaw('is_deleted = 0 and checked_at IS NOT NULL and '.$searchsql)
-            ->orderby('card_number', 'desc')->limit(100)->get();
-        $clients_ws = Client::whereRaw('is_deleted = 0 and checked_at IS NULL and '.$searchsql)
-            ->orderby('card_number', 'desc')->get();
-        $clients_del = Client::whereRaw('is_deleted = 1 and '.$searchsql)
-            ->orderby('updated_at', 'desc')->get();
+        if($request->input('tab') =='base' or empty($request->input('tab'))) {
+            $clients_db = Client::whereRaw('is_deleted = 0 and checked_at IS NOT NULL and ' . $searchsql)
+                ->orderby('card_number', 'desc')->paginate(20);
+        }
+        if($request->input('tab')=='ws') {
+            $clients_db = Client::whereRaw('is_deleted = 0 and checked_at IS NULL and ' . $searchsql)
+                ->orderby('card_number', 'desc')->paginate(20);
+        }
+        if($request->input('tab')=='del') {
+            $clients_db = Client::whereRaw('is_deleted = 1 and '.$searchsql)
+                ->orderby('updated_at', 'desc')->paginate(20);
+        }
         $searchtext=$request->input('search');
-        return view('clients_db.index', compact('clients_db', 'clients_ws', 'clients_del', 'user','searchtext'));
+        $ws_count = Client::whereRaw('is_deleted = 0 and checked_at IS NULL')->count();
+        return view('clients_db.index', compact('clients_db', 'user', 'searchtext','ws_count'));
     }
 
     /**
