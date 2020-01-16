@@ -25,17 +25,17 @@ class ClientsDBController extends Controller
     public function index(Request $request)
     {
         $operatorSql ='';
-        $operator = User::where('firstname',$request->input('search'))->pluck('id');
+        $operator = User::where('firstname','LIKE','%'.$request->input('search').'%')->pluck('id');
         if(!empty($operator)){
             foreach ($operator as $op) {
-                $operatorSql = $operatorSql . ' or `user_id` LIKE \'%' . $op.'%\'';
+                $operatorSql = $operatorSql . ' or `user_id` = ' . $op;
             }
         }
         $azsSql ='';
-        $azs = Places::where('name',$request->input('search'))->pluck('id');
+        $azs = Places::where('name','LIKE','%'.$request->input('search').'%')->pluck('id');
         if(!empty($azs)){
             foreach ($azs as $az){
-                $azsSql=$azsSql.' or `azs_id` LIKE \'%'.$az.'%\'';
+                $azsSql=$azsSql.' or `azs_id` = '.$az;
             }
         }
 
