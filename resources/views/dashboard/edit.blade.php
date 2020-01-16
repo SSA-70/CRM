@@ -8,7 +8,7 @@
             <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group mr-2">
                     <button type="submit" class="btn btn-sm btn-outline-secondary"><i class="fas fa-check"></i> Сохранить</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location='{{ route('clients.index') }}';"><i class="fas fa-times"></i>  Отменить</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location='{{ route('clients_db.show',$client->id) }}';"><i class="fas fa-times"></i>  Отменить</button>
                 </div>
             </div>
         </div>
