@@ -32,7 +32,7 @@
         <ul class="nav nav-tabs mr-auto">
             <li class="nav-item">
                 <a href="{{ route('clients_db.index', ['tab'=>'base','search'=>$searchtext]) }}"
-                   class="nav-link @if(Request::get('tab')=='base') active @endif">База</a>
+                   class="nav-link @if(Request::get('tab')=='base' or empty(Request::get('tab'))) active @endif">База</a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('clients_db.index', ['tab'=>'ws','search'=>$searchtext]) }}"
