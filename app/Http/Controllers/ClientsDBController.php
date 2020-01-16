@@ -51,7 +51,7 @@ class ClientsDBController extends Controller
 
         $user = Auth::user();
         $clients_db = Client::whereRaw('is_deleted = 0 and checked_at IS NOT NULL and '.$searchsql)
-            ->orderby('card_number', 'desc')->limit(1000)->get();
+            ->orderby('card_number', 'desc')->limit(100)->get();
         $clients_ws = Client::whereRaw('is_deleted = 0 and checked_at IS NULL and '.$searchsql)
             ->orderby('card_number', 'desc')->get();
         $clients_del = Client::whereRaw('is_deleted = 1 and '.$searchsql)
